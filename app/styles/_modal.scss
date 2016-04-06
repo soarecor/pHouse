@@ -1,0 +1,73 @@
+.project-modal-outer {
+	position: fixed;
+	overflow: scroll;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,0.6);
+	z-index: 90;
+}
+
+.project-modal{
+	position: absolute;
+	max-width: 1200px;
+	top: 5%;
+	margin-bottom: 3%;
+	left: 50%;
+	width: 95%;
+	min-height: 80vh;
+	background: white;
+	transform: translateX(-50%);
+	z-index: 100;
+	display:block;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+// added some styling for H1
+	& h1{
+		font-size:3rem;
+		margin-bottom: 0.6em;
+		width: 100%;
+	}
+	// added some styling for video
+	& video {
+		width: 100%;
+		height: auto;
+	}
+	// added some styling for p
+	& p{
+		font-size: 1.2rem;
+		line-height: 1.6em;
+		max-width: 600px;
+	}
+	& .close-btn {
+		position: absolute;
+		top: 0.3em;
+		right: 0.6em;
+		text-decoration: none;
+		font-weight: bold;
+		font-size: 3.2em;
+		color: white;
+	}
+	& .modal-content{
+		padding: 2em 2em;
+	}
+	& .flexbox-container {
+		display: flex;
+		flex-direction: row;
+	}
+	& h2{
+		font-size: 2rem;
+		margin: 1.2em 0 0.6em;
+		&:first-of-type {
+			margin-top: 0;
+		}
+	}
+	& li{
+		line-height: 1.6em;
+		font-size: 1.2rem;
+	}
+	& .modal-content-child{
+		padding-left: 7em;
+	}
+
+}

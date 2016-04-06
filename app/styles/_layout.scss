@@ -1,0 +1,13 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background: $light-grey;
+}
+
+.inner{
+	width: 90%;
+	max-width: 960px;
+	margin: 0 auto;
+}

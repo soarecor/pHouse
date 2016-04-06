@@ -1,0 +1,26 @@
+// bower:scss
+// endbower
+
+// colours
+$light-blue: #00b2ce;
+$dark-blue: #003767;
+$orange: #ff5000;
+$grey: #d5d5d5;
+$light-grey: #F2F2F2;
+$dark-grey: #666666;
+$black: #222222;
+
+@import 'reset';
+@import 'layout';
+@import 'nav';
+@import 'modal';
+@import 'image-grid';
+@import 'typography';
+@import 'programs';
+
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}

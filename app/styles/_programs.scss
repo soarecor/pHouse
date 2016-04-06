@@ -1,0 +1,58 @@
+// added this to style the programs page. Might add pictures later on
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background: $light-grey;
+}
+
+.program_list h1, .program-body__title{
+	font-size: 2rem;
+	line-height: 5rem;
+	color:$dark-blue;
+	@media screen and (max-width: 450px) {
+	font-size: 1.5rem;
+	}
+}
+
+.program-body__container{
+	padding: 1.9em 0;
+}
+
+.list a{
+	margin-top: 2%;
+	margin-bottom: 2%;
+	text-decoration: none;
+	color:$dark-blue;
+}
+.program-body__description{
+	font-size: 1.5rem;
+	line-height: 2rem;
+	max-width: 700px;
+	text-decoration: none;
+	color:$dark-blue;
+	@media screen and (max-width: 450px) {
+	font-size: 1rem;
+	line-height: 1.4rem;
+	}
+}
+.list :nth-child(8){
+	padding-bottom: 3%;
+}
+
+.program_list{
+margin-top: 3%;
+padding:3em;
+font-size: 1.5rem;
+line-height: 2.5rem;
+text-decoration: none;
+background: #FFF;
+border-radius: 2px;
+@media screen and (max-width: 450px) {
+font-size: 1rem;
+padding:1.5em;
+line-height: 1.5rem;
+
+}
+}

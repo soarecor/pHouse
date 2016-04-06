@@ -1,0 +1,27 @@
+html {
+	font-family: 'PT Sans', sans-serif;
+	color: $black;
+}
+
+.main-nav {
+	color: white;
+	a {
+		color: white;
+	}
+}
+
+.movie__caption--year {
+	display: block;
+	color: $dark-grey;
+	font-size: 0.8em;
+	margin-bottom: 0.4em;
+}
+
+.movie__caption--title {
+	font-size: 1.2em;
+	color: black;
+}
+
+a{
+	text-decoration: none;
+}

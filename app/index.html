@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sheridan Production House</title>
+
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+  </head>
+  <body id="app">
+    <!--[if lt IE 10]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <nav class="nav">
+      <div class="main-nav">
+        <div class="inner">
+          <a v-link="{ path: '/' }"><h1 class="main-nav__logo">Sheridan</h1></a>
+          <input class="main-nav__search-bar" type="text" v-model="search">
+          <ul class="main-nav__nav-items">
+            <li><a v-link="{ path: '/about' }">About</a></li>
+            <li>Login</li>
+          </ul>
+        </div>
+      </div>
+      <nav class="sub-nav">
+        <div class="inner">
+          <ul class="sub-nav__nav-items">
+            <li><a v-link="{ path: '/' }">Home</a></li>
+            <li><a v-link="{ path: '/programs' }">Programs</a></li>
+            <li>People</li>
+          </ul>
+        </div>
+      </nav>
+    </nav>
+
+    <div class="inner">
+      <router-view :movies="posts"></router-view>
+    </div>
+
+     <template id="home">
+        <div id="movie_columns">
+          <div class="movie" v-for="posts in movies | filterBy search">
+            <a v-link="{ path: '/project/' +  posts.projectID }">
+                <figure class="movie__container">
+                  <figcaption class="movie__caption">
+                    <span class="movie__caption--year">{{ posts.dateCompleted | filterDate }}</span>
+                    <h3 class="movie__caption--title">{{ posts.projectName }}</h3>
+                  </figcaption>
+                    <div class="movie__image--mask"></div>
+                   <img class="movie__image" src="http://phoenix.sheridanc.on.ca/~shertv/SPH/pImage/{{ posts.imageURL }}" alt="{{ posts.projectName }}">
+                </figure>
+            </a>
+          </div>
+          <router-view :id="$route.params.id"></router-view>
+        </div>
+      </template>
+
+      <template id="project-modal">
+        <div class="project-modal-outer">
+          <div class="project-modal">
+            <!-- Add required vuejs here to call the movies from modal.php in bottom video tag  -->
+            <video controls src="{{ projectInfo[0].url}}" >
+            </video>
+            <div class="modal-content">
+              <h1>{{ projectInfo[0].projectName }} ({{ projectInfo[0].dateCompleted | filterDate}})</h1>
+
+            <div class="flexbox-container">
+                <p>{{ projectInfo[0].projectSynopsis }}</p>
+
+                <div class="modal-content-child">
+
+                  <div class="project-modal__awards" v-if=" projectInfo[0].awards !== '' ">
+                    <h2>Awards</h2>
+                    <p>{{ projectInfo[0].awards }}</p>
+                  </div>
+                  <div class="project-modal__festivals" v-if=" projectInfo[0].festivals !== '' ">
+                    <h2>Festivals</h2>
+                    <p>{{ projectInfo[0].festivals }}</p>
+                  </div>
+
+                  <ul v-if="projectCast.length > 0">
+                    <h2>Actors</h2>
+                    <li v-for="person in projectCast">
+                      {{ person.characterName }} &mdash; {{ person.firstName }} {{ person.lastName }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <a v-link="{ path: '/' }" class="close-btn">&times;</a>
+          </div>
+        </div>
+      </template>
+
+      <template id="about">
+        <h1>About</h1>
+        <p>This is an about page. Lorem ipsum dolor sit amet, consectetur adipisicing elit. In animi assumenda illum suscipit? Recusandae ducimus minima, laborum, odit laudantium doloremque voluptates inventore aperiam minus voluptatibus eius voluptas fugiat est repellat!</p>
+      </template>
+
+      <template id="programs">
+        <div class="program_list">
+        <h1>Programs</h1>
+        <ul class="list">
+          <li><a v-link="{ path: '/programs/advanced-tv-film' }">Advanced TV & Film</a></li>
+          <li><a v-link="{ path: '/programs/bachelor-film-tv' }">Bachelor of Film & TV</a></li>
+          <li><a v-link="{ path: '/programs/journalism-new-media' }">Journalism &mdash; New Media</a></li>
+          <li><a v-link="{ path: '/programs/media-arts' }">Media Arts</a></li>
+          <li><a v-link="{ path: '/programs/bachelor-arts-animation' }">Bachelor of Arts &mdash; Animation</a></li>
+          <li><a v-link="{ path: '/programs/computer-animation' }">Computer Animation</a></li>
+          <li><a v-link="{ path: '/programs/visual-effects' }">Visual Effects</a></li>
+          <li><a v-link="{ path: '/programs/digital-character' }">Digital Character</a></li>
+        </ul>
+      </div>
+        <router-view></router-view>
+      </template>
+
+      <template id="advanced-tv-film">
+        <program-body
+          program-title="Advanced TV & Film"
+          program-description="Develop your creativity while gaining the specialized skills you need to bring your ideas and vision to life on the screen."
+          program-id="1"
+        >
+        </program-body>
+      </template>
+
+      <template id="bachelor-film-tv">
+        <program-body
+          program-title="Bachelor of Film & TV"
+          program-description="Sheridan’s program combines hands-on, real-world experience backed by theoretical learning in all aspects of the industry"
+          program-id="2"
+        >
+        </program-body>
+      </template>
+
+      <template id="journalism-new-media">
+        <program-body
+          program-title="Journalism &mdash; New Media"
+          program-description="Take your place with our many graduates who have distinguished themselves as innovative, forward-thinking visionaries in a constantly changing profession."
+          program-id="3"
+        >
+        </program-body>
+      </template>
+
+      <template id="media-arts">
+        <program-body
+          program-title="Media Arts"
+          program-description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat."
+          program-id="5"
+        >
+        </program-body>
+      </template>
+
+      <template id="bachelor-arts-animation">
+        <program-body
+          program-title="Bachelor of Arts & Animation"
+          program-description="Sheridan began offering animation courses in 1971 and we've been leaders in the field ever since."
+          program-id="6"
+        >
+        </program-body>
+      </template>
+
+      <template id="computer-animation">
+        <program-body
+          program-title="Computer Animation"
+          program-description="Sheridan's program has launched many prominent careers while breaking new ground in the entertainment, advertising and gaming industries."
+          program-id="7"
+        >
+        </program-body>
+      </template>
+
+      <template id="visual-effects">
+        <program-body
+          program-title="Visual Effects"
+          program-description="From design and pre-visualization to the realization of the director's vision, visual effects are essential in today's filmmaking industry."
+          program-id="8"
+        >
+        </program-body>
+      </template>
+
+      <template id="digital-character">
+        <program-body
+          program-title="Digital Character"
+          program-description="Launch or advance your career in character computer animation."
+          program-id="9"
+        >
+        </program-body>
+      </template>
+
+      <template id="program-body">
+        <!--added same vuejs here that was in template id="home". This adds the same flex styles to movies displayed in the individual program pages  -->
+
+        <div class="program-body__container">
+          <h1 class="program-body__title">{{ programTitle }}</h1>
+          <p class="program-body__description">{{ programDescription }}</p>
+        </div>
+        <div id="movie_columns">
+              <div class="movie" v-for="posts in projects | filterBy search">
+                <a v-link="{ path: '/project/' +  posts.projectID }">
+                  <figure class="movie__container">
+                    <figcaption class="movie__caption">
+                      <span class="movie__caption--year">{{ posts.dateCompleted | filterDate }}</span>
+                      <h3 class="movie__caption--title">{{ posts.projectName }}</h3>
+                    </figcaption>
+                      <div class="movie__image--mask"></div>
+                     <img class="movie__image" src="http://phoenix.sheridanc.on.ca/~shertv/SPH/pImage/{{ posts.imageURL }}" alt="{{ posts.projectName }}">
+                  </figure>
+                </a>
+              </div>
+      </div>
+          <router-view :id="$route.params.id"></router-view>
+      </template>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='https://www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/vue/dist/vue.js"></script>
+    <script src="/bower_components/vue-resource/dist/vue-resource.js"></script>
+    <script src="/bower_components/vue-router/dist/vue-router.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>
