@@ -29,7 +29,7 @@
       <div class="main-nav">
         <div class="inner">
           <a v-link="{ path: '/' }"><h1 class="main-nav__logo">Sheridan</h1></a>
-          <input class="main-nav__search-bar" type="text" v-model="search">
+          <input class="main-nav__search-bar" type="text" v-on:keyup="goToSearch" v-model="query">
           <ul class="main-nav__nav-items">
             <li><a v-link="{ path: '/about' }">About</a></li>
             <li>Login</li>
@@ -233,7 +233,7 @@
       <template id="search">
         <form>
           <p>We found {{ total }} results.</p>
-          <input v-on:keyup="search" v-model="query" type="text">
+          <input v-on:keyup="search" v-model="query" type="hidden" v-bind:value="$route.params.query">
           <div id="movie_columns">
           <div class="movie" v-for="posts in projects">
             <a v-link="{ path: '/project/' +  posts.projectID }">

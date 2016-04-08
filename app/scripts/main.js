@@ -92,6 +92,12 @@ var Search = Vue.extend({
 	computed: {
 		total: function() {
 			return this.projects.length;
+		},
+		search: function() {
+			var searchURL = "/php/search.php?query=" + this.query;
+			this.$http.get(searchURL, function(data) {
+				this.$set('projects', data);
+			})
 		}
 	},
 	methods: {
@@ -161,6 +167,12 @@ var router = new VueRouter({
 var App = Vue.extend({
 	el: '#app',
 
+	data: function() {
+		return {
+			query: ""
+		}
+	},
+
 	ready: function(){
 		this.fetchPosts();
 	},
@@ -170,6 +182,9 @@ var App = Vue.extend({
 			this.$http.get('/php/api.php', function(posts) {
 				this.$set('posts', posts);
 			})
+		},
+		goToSearch: function() {
+			router.go({path: '/search/' + this.query });
 		}
 	}
 });
@@ -253,7 +268,7 @@ router.map({
 			}
 		}
 	},
-	'/search': {
+	'/search/:query': {
 		component: Search
 	}
 });
