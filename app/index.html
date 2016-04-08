@@ -53,7 +53,7 @@
 
      <template id="home">
         <div id="movie_columns">
-          <div class="movie" v-for="posts in movies | filterBy search">
+          <div class="movie" v-for="posts in movies">
             <a v-link="{ path: '/project/' +  posts.projectID }">
                 <figure class="movie__container">
                   <figcaption class="movie__caption">
@@ -210,15 +210,7 @@
           <h1 class="program-body__title">{{ programTitle }}</h1>
           <p class="program-body__description">{{ programDescription }}</p>
           <select v-model="dateFilter">
-            <option value="">Any</option>
-            <option value="2009">2009</option>
-            <option value="2010">2010</option>
-            <option value="2011">2011</option>
-            <option value="2012">2012</option>
-            <option value="2013">2013</option>
-            <option value="2014">2014</option>
-            <option value="2015">2015</option>
-            <option value="2016">2016</option>
+            <option v-for="date in dateRange" value="{{ date }}">{{ date }}</option>
           </select>
         </div>
         <div id="movie_columns">

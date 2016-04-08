@@ -91,7 +91,26 @@ Vue.component('program-body', {
 	    	projects: []
 	    }
 	},
+	computed: {
+		dateRange: function() {
+			// Dynamically calculate the range of project dates
+			var dateRange = this.projects
+				.map(function(project) {
+					var newDate = project.dateCompleted;
+					if (typeof(newDate) === "string") {
+						return newDate.substr(0,4);
+					}
+				})
+				.filter(function(item, index, inputArray) {
+					return inputArray.indexOf(item) == index;
+				})
+				.sort(function(a, b) {
+					return b - a;
+				});
 
+			return dateRange;
+		}
+	},
 	ready: function () {
 		var searchURL = "/php/getProjectByProgram.php?id=" + this.programId;
 		this.$http.get(searchURL, function(data) {
