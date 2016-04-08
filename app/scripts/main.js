@@ -80,6 +80,30 @@ var DigitalCharacter = Vue.extend({
 	template: '#digital-character'
 })
 
+// Search Component
+var Search = Vue.extend({
+	template: '#search',
+	data: function() {
+		return {
+			query: "",
+			projects: []
+		}
+	},
+	computed: {
+		total: function() {
+			return this.projects.length;
+		}
+	},
+	methods: {
+		search: function() {
+			var searchURL = "/php/search.php?query=" + this.query;
+			this.$http.get(searchURL, function(data) {
+				this.$set('projects', data);
+			})
+		}
+	}
+})
+
 // Program Body Component
 Vue.component('program-body', {
   	template: '#program-body',
@@ -228,6 +252,9 @@ router.map({
 				component: ProjectModal
 			}
 		}
+	},
+	'/search': {
+		component: Search
 	}
 });
 
