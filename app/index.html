@@ -209,20 +209,31 @@
         <div class="program-body__container">
           <h1 class="program-body__title">{{ programTitle }}</h1>
           <p class="program-body__description">{{ programDescription }}</p>
+          <select v-model="dateFilter">
+            <option value="">Any</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+          </select>
         </div>
         <div id="movie_columns">
-              <div class="movie" v-for="posts in projects | filterBy search">
-                <a v-link="{ path: '/project/' +  posts.projectID }">
-                  <figure class="movie__container">
-                    <figcaption class="movie__caption">
-                      <span class="movie__caption--year">{{ posts.dateCompleted | filterDate }}</span>
-                      <h3 class="movie__caption--title">{{ posts.projectName }}</h3>
-                    </figcaption>
-                      <div class="movie__image--mask"></div>
-                     <img class="movie__image" src="http://phoenix.sheridanc.on.ca/~shertv/SPH/pImage/{{ posts.imageURL }}" alt="{{ posts.projectName }}">
-                  </figure>
-                </a>
-              </div>
+          <div class="movie" v-for="posts in projects | filterBy dateFilter in 'dateCompleted'">
+            <a v-link="{ path: '/project/' +  posts.projectID }">
+              <figure class="movie__container">
+                <figcaption class="movie__caption">
+                  <span class="movie__caption--year">{{ posts.dateCompleted | filterDate }}</span>
+                  <h3 class="movie__caption--title">{{ posts.projectName }}</h3>
+                </figcaption>
+                  <div class="movie__image--mask"></div>
+                 <img class="movie__image" src="http://phoenix.sheridanc.on.ca/~shertv/SPH/pImage/{{ posts.imageURL }}" alt="{{ posts.projectName }}">
+              </figure>
+            </a>
+          </div>
       </div>
           <router-view :id="$route.params.id"></router-view>
       </template>

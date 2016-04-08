@@ -6,7 +6,7 @@
 	$programID = ($_GET['id']);
 
 	try {
-		$query = $db->query( "SELECT * FROM `sp_projects` WHERE `sheridanProgram` = $programID ORDER BY RAND() LIMIT 24");
+		$query = $db->query( "SELECT * FROM `sp_projects` WHERE `sheridanProgram` = $programID ORDER BY RAND()");
 		$result = $query->fetchAll();
 		echo json_encode( $result );
 		//echo "<br>Done";
