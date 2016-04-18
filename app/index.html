@@ -29,9 +29,9 @@
       <div class="main-nav">
         <div class="inner">
           <a v-link="{ path: '/' }"><h1 class="main-nav__logo">Sheridan</h1></a>
-          <input class="main-nav__search-bar" type="text" v-on:keyup="goToSearch" v-model="query">
+          <input class="main-nav__search-bar" type="text" v-on:keyup="goToSearch" v-model="query" placeholder="Search...">
           <ul class="main-nav__nav-items">
-            <li>Login</li>
+            <li><a href="logout.php">Log out</a></li>
           </ul>
         </div>
       </div>
@@ -40,7 +40,6 @@
           <ul class="sub-nav__nav-items">
             <li><a v-link="{ path: '/' }">Home</a></li>
             <li><a v-link="{ path: '/programs' }">Programs</a></li>
-            <li>People</li>
           </ul>
         </div>
       </nav>

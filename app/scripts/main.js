@@ -18,12 +18,12 @@ var ProjectModal = Vue.extend({
 	  },
 
 	ready: function () {
-		var searchURL = "/php/modal.php?id=" + this.id;
+		var searchURL = "php/modal.php?id=" + this.id;
 		this.$http.get(searchURL, function(data) {
 			this.$set('projectInfo', data);
 		})
 
-    var personSearchURL = "/php/getPerson.php?id=" + this.id;
+    var personSearchURL = "php/getPerson.php?id=" + this.id;
     this.$http.get(personSearchURL, function(data) {
       this.$set('projectCast', data);
     })
@@ -89,7 +89,7 @@ var Search = Vue.extend({
 			return this.projects.length;
 		},
 		search: function() {
-			var searchURL = "/php/search.php?query=" + this.query;
+			var searchURL = "php/search.php?query=" + this.query;
 			this.$http.get(searchURL, function(data) {
 				this.$set('projects', data);
 			})
@@ -97,7 +97,7 @@ var Search = Vue.extend({
 	},
 	methods: {
 		search: function() {
-			var searchURL = "/php/search.php?query=" + this.query;
+			var searchURL = "php/search.php?query=" + this.query;
 			this.$http.get(searchURL, function(data) {
 				this.$set('projects', data);
 			})
@@ -137,7 +137,7 @@ Vue.component('program-body', {
 		}
 	},
 	ready: function () {
-		var searchURL = "/php/getProjectByProgram.php?id=" + this.programId;
+		var searchURL = "php/getProjectByProgram.php?id=" + this.programId;
 		this.$http.get(searchURL, function(data) {
 			this.$set('projects', data);
 		})
@@ -174,7 +174,7 @@ var App = Vue.extend({
 
 	methods: {
 		fetchPosts: function(){
-			this.$http.get('/php/api.php', function(posts) {
+			this.$http.get('php/api.php', function(posts) {
 				this.$set('posts', posts);
 			})
 		},
