@@ -72,33 +72,31 @@
       <template id="project-modal">
         <div class="project-modal-outer">
           <div class="project-modal">
-            <!-- Add required vuejs here to call the movies from modal.php in bottom video tag  -->
-            <video controls src="{{ projectInfo[0].url}}" >
+            <div class="project-modal__background">
+              <img src="http://phoenix.sheridanc.on.ca/~shertv/SPH/pImage/{{ projectInfo[0].imageURL }}" alt="{{ projectInfo[0].projectName }}">
+            </div>
+            <video class="project-modal__video" controls src="{{ projectInfo[0].url}}" >
             </video>
             <div class="modal-content">
               <h1>{{ projectInfo[0].projectName }} ({{ projectInfo[0].dateCompleted | filterDate}})</h1>
+              <p>{{ projectInfo[0].projectSynopsis }}</p>
 
-            <div class="flexbox-container">
-                <p>{{ projectInfo[0].projectSynopsis }}</p>
-
-                <div class="modal-content-child">
-
-                  <div class="project-modal__awards" v-if=" projectInfo[0].awards !== '' ">
-                    <h2>Awards</h2>
-                    <p>{{ projectInfo[0].awards }}</p>
-                  </div>
-                  <div class="project-modal__festivals" v-if=" projectInfo[0].festivals !== '' ">
-                    <h2>Festivals</h2>
-                    <p>{{ projectInfo[0].festivals }}</p>
-                  </div>
-
-                  <ul v-if="projectCast.length > 0">
-                    <h2>Actors</h2>
-                    <li v-for="person in projectCast">
-                      {{ person.characterName }} &mdash; {{ person.firstName }} {{ person.lastName }}
-                    </li>
-                  </ul>
+              <div class="modal-content-child">
+                <div class="project-modal__awards" v-if=" projectInfo[0].awards !== '' ">
+                  <h2>Awards</h2>
+                  <p>{{ projectInfo[0].awards }}</p>
                 </div>
+                <div class="project-modal__festivals" v-if=" projectInfo[0].festivals !== '' ">
+                  <h2>Festivals</h2>
+                  <p>{{ projectInfo[0].festivals }}</p>
+                </div>
+
+                <ul v-if="projectCast.length > 0">
+                  <h2>Actors</h2>
+                  <li v-for="person in projectCast">
+                    {{ person.characterName }} &mdash; {{ person.firstName }} {{ person.lastName }}
+                  </li>
+                </ul>
               </div>
             </div>
             <a v-link="{ path: '/' }" class="close-btn">&times;</a>
