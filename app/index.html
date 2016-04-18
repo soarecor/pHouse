@@ -207,7 +207,9 @@
         <div class="program-body__container">
           <h1 class="program-body__title">{{ programTitle }}</h1>
           <p class="program-body__description">{{ programDescription }}</p>
-          <select v-model="dateFilter">
+
+          <select v-model="dateFilter" class="program-body__select">
+            <option value="" disabled selected>Filter by Year</option>
             <option v-for="date in dateRange" value="{{ date }}">{{ date }}</option>
           </select>
         </div>
