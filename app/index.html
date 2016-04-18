@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="description" content="">
@@ -31,7 +31,6 @@
           <a v-link="{ path: '/' }"><h1 class="main-nav__logo">Sheridan</h1></a>
           <input class="main-nav__search-bar" type="text" v-on:keyup="goToSearch" v-model="query">
           <ul class="main-nav__nav-items">
-            <li><a v-link="{ path: '/about' }">About</a></li>
             <li>Login</li>
           </ul>
         </div>
@@ -102,11 +101,6 @@
             <a v-link="{ path: '/' }" class="close-btn">&times;</a>
           </div>
         </div>
-      </template>
-
-      <template id="about">
-        <h1>About</h1>
-        <p>This is an about page. Lorem ipsum dolor sit amet, consectetur adipisicing elit. In animi assumenda illum suscipit? Recusandae ducimus minima, laborum, odit laudantium doloremque voluptates inventore aperiam minus voluptatibus eius voluptas fugiat est repellat!</p>
       </template>
 
       <template id="programs">

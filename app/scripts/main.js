@@ -4,11 +4,6 @@ var Home = Vue.extend({
     props: ['movies']
 });
 
-// About Component
-var About = Vue.extend({
-    template: '#about'
-});
-
 // Project Modal Component
 var ProjectModal = Vue.extend({
 	template: '#project-modal',
@@ -197,9 +192,6 @@ router.map({
 				component: ProjectModal
 			}
 		}
-	},
-	'/about': {
-		component: About
 	},
 	'/programs': {
 		component: Programs,
