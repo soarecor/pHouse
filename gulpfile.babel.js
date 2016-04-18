@@ -89,6 +89,14 @@ gulp.task('extras', () => {
   }).pipe(gulp.dest('dist'));
 });
 
+gulp.task('extras-php', () => {
+  return gulp.src([
+    'app/php/*.*'
+  ], {
+    dot: true
+  }).pipe(gulp.dest('dist/php'));
+});
+
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
 
@@ -203,7 +211,7 @@ gulp.task('wiredep', () => {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras'], () => {
+gulp.task('build', ['html', 'images', 'fonts', 'extras', 'extras-php'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
