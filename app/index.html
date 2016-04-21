@@ -1,3 +1,12 @@
+<?session_start();
+  if(isset($_SESSION["user_id"]) || isset($_SESSION["cUSerId"])) {
+      echo $_SESSION["user_id"];
+  }
+  else{
+    header("location:index.php");
+  }
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -31,6 +40,12 @@
           <a v-link="{ path: '/' }"><h1 class="main-nav__logo">Sheridan</h1></a>
           <input class="main-nav__search-bar" type="text" v-on:keyup="goToSearch" v-model="query" placeholder="Search...">
           <ul class="main-nav__nav-items">
+          <?
+            if(isset($_SESSION["user_id"])){ ?>
+            <li><a href="userPage.php">Admin</a></li>
+          <?
+            }
+          ?>
             <li><a href="logout.php">Log out</a></li>
           </ul>
         </div>
