@@ -11,3 +11,17 @@ body {
 	max-width: 960px;
 	margin: 0 auto;
 }
+
+.mobile-hide {
+	display: block;
+	@media screen and (max-width: 500px) {
+		display: none;
+	}
+}
+
+.mobile-show {
+	display: none;
+	@media screen and (max-width: 500px) {
+		display: block;
+	}
+}

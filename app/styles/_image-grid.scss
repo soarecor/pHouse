@@ -9,15 +9,12 @@
 .movie {
 	width: 30%;
 	&:nth-child(3n+2) {
-		@media screen and (min-width: 850px) {
+		@media screen and (min-width: 480px) {
 			margin-left: 5%;
 			margin-right: 5%;
 		}
 	}
-	@media screen and (max-width: 850px) {
-		width: 48%;
-	}
-	@media screen and (max-width: 600px) {
+	@media screen and (max-width: 480px) {
 		width: 100%;
 	}
 	.movie__container {

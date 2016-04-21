@@ -10,6 +10,13 @@ html {
 	}
 }
 
+.sub-nav a {
+	color: $black;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
 .movie__caption--year {
 	display: block;
 	color: $dark-grey;

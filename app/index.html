@@ -38,7 +38,7 @@
       <div class="main-nav">
         <div class="inner">
           <a v-link="{ path: '/' }"><h1 class="main-nav__logo">Sheridan</h1></a>
-          <input class="main-nav__search-bar" type="text" v-on:keyup="goToSearch" v-model="query" placeholder="Search...">
+          <input class="main-nav__search-bar mobile-hide" type="text" v-on:keyup="goToSearch" v-model="query" placeholder="Search...">
           <ul class="main-nav__nav-items">
           <?
             if(isset($_SESSION["user_id"])){ ?>
@@ -48,6 +48,7 @@
           ?>
             <li><a href="logout.php">Log out</a></li>
           </ul>
+          <input class="main-nav__search-bar--mobile mobile-show" type="text" v-on:keyup="goToSearch" v-model="query" placeholder="Search...">
         </div>
       </div>
       <nav class="sub-nav">
